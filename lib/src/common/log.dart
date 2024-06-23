@@ -4,7 +4,7 @@ import 'package:logger/logger.dart';
 class Log implements ILogger {
   final Logger _logger;
 
-  /// Log is enable
+  /// Log is enabled
   bool _enable;
 
   /// Constructor
@@ -44,7 +44,7 @@ class Log implements ILogger {
     StackTrace? stackTrace,
   }) {
     if (!_enable) return;
-    _logger.d(message, error, stackTrace);
+    _logger.d(message, error: error, stackTrace: stackTrace);
   }
 
   @override
@@ -54,27 +54,19 @@ class Log implements ILogger {
     StackTrace? stackTrace,
   }) {
     if (!_enable) return;
-    _logger.e(message, error, stackTrace);
+    _logger.e(message, error: error, stackTrace: stackTrace);
   }
 
   @override
   void info(dynamic message) {
     if (!_enable) return;
-    _logger.i(
-      message,
-      null,
-      StackTrace.empty,
-    );
+    _logger.i(message);
   }
 
   @override
   void verbose(dynamic message) {
     if (!_enable) return;
-    _logger.v(
-      message,
-      null,
-      StackTrace.empty,
-    );
+    _logger.v(message);
   }
 
   @override
@@ -84,7 +76,7 @@ class Log implements ILogger {
     StackTrace? stackTrace,
   }) {
     if (!_enable) return;
-    _logger.w(message, error, stackTrace);
+    _logger.w(message, error: error, stackTrace: stackTrace);
   }
 }
 
@@ -118,7 +110,7 @@ abstract class ILogger extends ToggableLog {
   });
 }
 
-/// Log that can be toggable
+/// Log that can be toggled
 abstract class ToggableLog {
   /// Enable log
   void enable();
